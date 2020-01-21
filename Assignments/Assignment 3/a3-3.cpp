@@ -1,6 +1,6 @@
 // Chamath Wijesekera - ME 101
 // Assignment 3 Question 3
-// Ronald Trang Acknowledged - Attempts at debugging for End of File while loop
+// Ronald Trang Acknowledged - Attempts at debugging for End of File while loop.
 
 #include <cstdlib>
 #include <iostream>
