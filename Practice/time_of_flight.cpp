@@ -10,18 +10,18 @@ int main()
     float launchAngle = 0;
     float elevChange = 0;
     
-    cout << "Enter initial velocity: ";
+    cout << "Enter initial velocity (m/s): ";
     cin >> initVelocity;
-    cout << "Enter launch angle: ";
+    cout << "Enter launch angle (degrees): ";
     cin >> launchAngle;
-    cout << "Enter the change in elevation from launch to landing: ";
+    cout << "Enter the change in elevation from launch to landing (m): ";
     cin >> elevChange;
     
     // TODO ToF Calculations
     
-    cout << "Time of flight 1: "
+    cout << "Possible times of flight (s):\n "
          //<<  ToF 1
-         << "\nTime of flight 2: "
+         << endl
          //<<  ToF 2
          << endl;
 
