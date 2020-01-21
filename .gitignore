@@ -33,3 +33,6 @@
 
 # Misc
 *.pdf
+
+#vsCode
+settings.json
