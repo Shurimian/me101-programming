@@ -9,9 +9,9 @@ using namespace std;
 
 int main ()
 {
-    char running = ' ';
+    char running = 'N';
 
-    while (running != 'n')
+    do
     {
         const float DEG_TO_RAD = M_PI / 180;
         float radius = 0;
@@ -25,8 +25,10 @@ int main ()
         float y = radius * sin(angleRadians);
         
         cout << "x: " << x << " y: " << y << endl;
-
-        system("PAUSE");
-        return EXIT_SUCCESS; 
-    }
+        cout << "Would you like to do another calculation? (y/n): ";
+        cin >> running;
+    } while (running == 'Y' || running == 'y');
+    
+    system("PAUSE");
+    return EXIT_SUCCESS;
 }
