@@ -52,6 +52,7 @@ int main()
          << lowestStudentId << " had the lowest mark of " << lowestStudentMark << " percent\n"
          << "The mean grade across all students was " << markSum / studentCount << " percent\n";
 
+    fin.close();
     system("PAUSE");
     return EXIT_SUCCESS;
 }

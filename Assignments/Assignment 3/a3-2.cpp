@@ -42,6 +42,7 @@ int main()
     cout << "The highest daily temperature in December was " << monthHigh << " degrees Celsius." << endl;
     cout << "The lowest daily temperature in December was " << monthLow << " degrees Celsius." << endl;
 
+    fin.close();
     system("PAUSE");
     return EXIT_SUCCESS;
 }

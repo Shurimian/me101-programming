@@ -1,0 +1,33 @@
+25
+Brampton          593638
+Burlington        183314
+Calgary          1239220
+Edmonton          932546
+Fredericton        58220
+Guelph            131794
+Halifax           403131
+Hamilton          536917
+Kitchener         233222
+London            383822
+Markham           328966
+Mississauga       721599
+Montreal         1704694
+Oakville          193832
+Ottawa            934243
+Quebec_City       531902
+Regina            215106
+Saskatoon         246376
+St_Johns          108860
+Toronto          2731571
+Vancouver         631486
+Vaughan           306233
+Victoria           85792
+Waterloo          104986
+Winnipeg          705224
+
+
+
+
+
+
+
