@@ -29,6 +29,6 @@ int main ()
         cin >> running;
     } while (running == 'Y' || running == 'y');
     
-    system("PAUSE");
+     system("PAUSE");
     return EXIT_SUCCESS;
 }

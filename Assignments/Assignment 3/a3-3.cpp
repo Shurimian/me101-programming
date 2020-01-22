@@ -1,4 +1,4 @@
-// Chamath Wijesekera - ME 101
+// Chamath Wijesekera and Nathan Shen - ME 101
 // Assignment 3 Question 3
 // Ronald Trang Acknowledged - Attempts at debugging for End of File while loop.
 
@@ -56,3 +56,11 @@ int main()
     system("PAUSE");
     return EXIT_SUCCESS;
 }
+
+/*
+There are 1258 students in total
+44224478 had the highest mark of 98.48 percent
+21619966 had the lowest mark of 18.07 percent
+The mean grade across all students was 71.34 percent
+Press any key to continue . . . 
+*/

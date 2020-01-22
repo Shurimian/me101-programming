@@ -1,4 +1,4 @@
-// Chamath Wijesekera - ME 101
+// Chamath Wijesekera and Nathan Shen - ME 101
 // Assignment 3 Question 2
 
 #include <cstdlib>
@@ -9,9 +9,9 @@ using namespace std;
 
 int main()
 {
-    ifstream fileIn("December_2019.txt");
+    ifstream fin("December_2019.txt");
 
-    if (!fileIn)
+    if (!fin)
     {
         cout << "File not Found" << endl;
         system("PAUSE");
@@ -21,22 +21,20 @@ int main()
     double monthHigh = -100;
     double monthLow = 100;
 
-    for (int day = 1; day <= 31; day++)
+    for (int day = 1; day <= 62; day++)
     {
-        double dayHigh = 0;
-        double dayLow = 0;
+        double temp = 0;
 
-        fileIn >> dayHigh;
-        fileIn >> dayLow;
+        fin >> temp;
 
-        if (dayHigh > monthHigh)
+        if (temp > monthHigh)
         {
-            monthHigh = dayHigh;
+            monthHigh = temp;
         }
 
-        if (dayLow < monthLow)
+        if (temp < monthLow)
         {
-            monthLow = dayLow;
+            monthLow = temp;
         }
     }
     cout << "The highest daily temperature in December was " << monthHigh << " degrees Celsius." << endl;
@@ -46,3 +44,9 @@ int main()
     system("PAUSE");
     return EXIT_SUCCESS;
 }
+
+/*
+The highest daily temperature in December was 10.2 degrees Celsius.
+The lowest daily temperature in December was -17.9 degrees Celsius.
+Press any key to continue . . . 
+*/
