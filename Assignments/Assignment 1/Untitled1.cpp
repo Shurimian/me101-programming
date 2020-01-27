@@ -10,7 +10,6 @@ using namespace std;
 
 int main()
 {	
-	cout << fixed << setprecision(4);
-	double x = -681.0;
-	cout << x;
+	bool test = false;
+	cout << test;
 }
