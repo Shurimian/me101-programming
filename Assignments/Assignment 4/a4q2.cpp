@@ -1,5 +1,6 @@
 // Chamath Wijesekera - ME 101
 // Assignment 4 Question 2
+// cmath reference from http://www.cplusplus.com/reference/cmath/ acknowledged for hypot() function
 
 #include <cstdlib>
 #include <iostream>
