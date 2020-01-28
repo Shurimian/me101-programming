@@ -17,6 +17,8 @@ int main()
     cout << "Enter the change in elevation from launch to landing (m): ";
     cin >> elevChange;
     
+
+    // TODO degrees to rads
     // TODO ToF Calculations
     
     cout << "Possible times of flight (s):\n "
