@@ -17,6 +17,13 @@ int main()
     ifstream fin("taxi.txt");
     ofstream fout("taxiReport.txt");
 
+    if (!fin)
+    {
+        cout << "File not found";
+        system("PAUSE");
+        return EXIT_FAILURE;
+    }
+
     // Vars declaration
     
     const double COST_PER_STOP = 12;
