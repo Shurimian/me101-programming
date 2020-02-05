@@ -3,12 +3,6 @@
 
 
 // Init Sensors
-sensorType[S1] = sensorEV3_Gyro;
-sensorType[S2] = sensorEV3_Color;
-sensorType[S3] = sensorEV3_Touch;
-wait1Msec(50);
-SensorMode[S1] = modeEV3Gyro_Angle;
-SensorMode[S2] = modeEV3Color_Color;
 
 // Motor Power Function
 void motorsPower(int power)
@@ -19,25 +13,25 @@ void motorsPower(int power)
 // Turning Function
 void turn(int angle)
 {
-	resetGyro[S1];
+	resetGyro(S1);
 
 	// Clockwise, else counterclockwise
 	if (angle > 0)
 	{
-		motor[motorA] = 30;
-		motor[motorC] = -30;
+		motor[motorA] = 15;
+		motor[motorC] = -15;
 
 		while (SensorValue[S1] < angle)
 		{}
 	}
 	else
 	{
-		motor[motorA] = -30;
-		motor[motorC] = 30;
+		motor[motorA] = -15;
+		motor[motorC] = 15;
 
 		while (SensorValue[S1] > angle)
 		{}
-	{
+	}
 
 	motorsPower(0);
 }
@@ -45,13 +39,28 @@ void turn(int angle)
 
 task main()
 {
+	SensorType[S1] = sensorEV3_Gyro;
+	SensorType[S2] = sensorEV3_Color;
+	SensorType[S3] = sensorEV3_Touch;
+	wait1Msec(50);
+	SensorMode[S1] = modeEV3Gyro_Angle;
+	SensorMode[S2] = modeEV3Color_Color;
+
 	bool hasTouchPressed = false;
 	int isPathClockwise = 1;
 	// Const for wheel radius because I'm not sure what it is until it is measured in Q2
-	const float WHEEL_RADIUS_CM = 2.75;
+	const float WHEEL_RADIUS_CM = 2.7;
 	const float ENCODER_50_CM = 50.0 * 180.0 / (PI * WHEEL_RADIUS_CM);
 	float distanceToGo = ENCODER_50_CM;
 
+	while(!getButtonPress(buttonEnter))
+	{}
+
+	while(getButtonPress(buttonEnter))
+	{}
+	
+	
+	
 	do
 	{
 		nMotorEncoder[motorA] = 0;
@@ -61,12 +70,12 @@ task main()
 		while(SensorValue[S2] != (int)colorRed && nMotorEncoder[motorA] < distanceToGo && SensorValue[S3] == 0)
 		{}
 
-		// Blue found
-		if (SensorValue[S2] == (int)colorBlue)
+		// Red found
+		if (SensorValue[S2] == (int)colorRed)
 		{
 			motorsPower(0);
 			// Turn around the robot and change remaining distance on leg
-			int distanceToGo = nMotorEncoder[motorA];
+			distanceToGo = nMotorEncoder[motorA];
 			turn(180);
 			isPathClockwise = -isPathClockwise;
 		}
@@ -82,7 +91,7 @@ task main()
 			turn(90 * isPathClockwise);
 			distanceToGo = ENCODER_50_CM;
 		}
-	} while (!hasTouchPressed)
+	} while (!hasTouchPressed);
 
 	motorsPower(0);
 }
