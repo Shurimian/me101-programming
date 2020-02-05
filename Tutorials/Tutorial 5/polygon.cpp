@@ -1,6 +1,8 @@
 // Chamath Wijesekera - ME 101
 // Tutorial 5 - Polygons
 
+#define _USE_MATH_DEFINES
+
 #include <cstdlib>
 #include <cmath>
 #include <iostream>
