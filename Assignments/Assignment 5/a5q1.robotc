@@ -1,4 +1,4 @@
-// Chamath Wijesekera - ME 101
+// Chamath Wijesekera and Gauthamkrishna Anil - ME 101
 // Assignment 5 Question 1
 
 
@@ -52,8 +52,8 @@ task main()
 	int isPathClockwise = 1;
 	// Const for wheel radius because I'm not sure what it is until it is measured in Q2
 	const float WHEEL_RADIUS_CM = 2.75;
-	const float ENCODER_50_CM = 50.0 * 360.0 / (2.0 * PI * WHEEL_RADIUS_CM);
-	float distanceToGo = 0;
+	const float ENCODER_50_CM = 50.0 * 180.0 / (PI * WHEEL_RADIUS_CM);
+	float distanceToGo = ENCODER_50_CM;
 
 	do
 	{
