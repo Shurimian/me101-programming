@@ -2,9 +2,6 @@
 // Assignment 5 Question 1
 
 
-
-
-
 // Init Sensors
 sensorType[S1] = sensorEV3_Gyro;
 sensorType[S2] = sensorEV3_Color;
@@ -61,7 +58,7 @@ task main()
 		motorsPower(30);
 
 		// Poll for interruptions - Blue detected, side length elapsed, or touch sensor triggered
-		while(SensorValue[S2] != (int)colorBlue && nMotorEncoder[motorA] < distanceToGo && SensorValue[S3] == 0)
+		while(SensorValue[S2] != (int)colorRed && nMotorEncoder[motorA] < distanceToGo && SensorValue[S3] == 0)
 		{}
 
 		// Blue found
