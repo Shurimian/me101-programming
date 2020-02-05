@@ -1,0 +1,44 @@
+// Chamath Wijesekera - ME 101
+// Assignment 5 Question 2
+
+
+task main()
+{
+	SensorType[S1] = sensorEV3_Ultrasonic;
+	wait1Msec(50);
+
+	while(!getButtonPress(buttonAny))
+	{}
+
+	while(getButtonPress(buttonAny))
+	{}
+	const int ENC_LIMIT = 360 * 5
+
+	int initDistance = SensorValue[S1];
+	nMotorEncoder[motorA] = 0;
+	time1[T1] = 0;
+
+	motor[motorA] = motor[motorC] = 30;
+
+	while (nMotorEncoder[motorA] < ENC_LIMIT)
+	{}
+
+	motor[motorA] = motor[motorC] = 0;
+	int timeElapsed = time1[T1];
+	int finalDistance = SensorValue[S1];
+
+	int distanceTravelled = initDistance - finalDistance;
+	float wheelDiameter = distanceTravelled * 360.0 / (PI * ENC_LIMIT);
+	float speed = distanceTravelled / 100.0 / (timeElapsed / 1000.0);
+
+	displayString(0, "Wheel Diameter: %f cm", wheelDiameter);
+	displayString(1, "Speed at 30% Power: %f m/s", speed);
+
+	while (!getButtonPress(buttonAny))
+	{}
+
+	while (getButtinPress(buttonAny))
+	{}
+
+	eraseDisplay();
+}

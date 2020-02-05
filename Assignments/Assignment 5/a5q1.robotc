@@ -1,0 +1,91 @@
+// Chamath Wijesekera - ME 101
+// Assignment 5 Question 1
+
+
+
+
+
+// Init Sensors
+sensorType[S1] = sensorEV3_Gyro;
+sensorType[S2] = sensorEV3_Color;
+sensorType[S3] = sensorEV3_Touch;
+wait1Msec(50);
+SensorMode[S1] = modeEV3Gyro_Angle;
+SensorMode[S2] = modeEV3Color_Color;
+
+// Motor Power Function
+void motorsPower(int power)
+{
+	motor[motorA] = motor[motorC] = power;
+}
+
+// Turning Function
+void turn(int angle)
+{
+	resetGyro[S1];
+
+	// Clockwise, else counterclockwise
+	if (angle > 0)
+	{
+		motor[motorA] = 30;
+		motor[motorC] = -30;
+
+		while (SensorValue[S1] < angle)
+		{}
+	}
+	else
+	{
+		motor[motorA] = -30;
+		motor[motorC] = 30;
+
+		while (SensorValue[S1] > angle)
+		{}
+	{
+
+	motorsPower(0);
+}
+
+
+task main()
+{
+	bool hasTouchPressed = false;
+	int isPathClockwise = 1;
+	// Const for wheel radius because I'm not sure what it is until it is measured in Q2
+	const float WHEEL_RADIUS_CM = 2.75;
+	const float ENCODER_50_CM = 50.0 * 360.0 / (2.0 * PI * WHEEL_RADIUS_CM);
+	float distanceToGo = 0;
+
+	do
+	{
+		nMotorEncoder[motorA] = 0;
+		motorsPower(30);
+
+		// Poll for interruptions - Blue detected, side length elapsed, or touch sensor triggered
+		while(SensorValue[S2] != (int)colorBlue && nMotorEncoder[motorA] < distanceToGo && SensorValue[S3] == 0)
+		{}
+
+		// Blue found
+		if (SensorValue[S2] == (int)colorBlue)
+		{
+			motorsPower(0);
+			// Turn around the robot and change remaining distance on leg
+			int distanceToGo = nMotorEncoder[motorA];
+			turn(180);
+			isPathClockwise = -isPathClockwise;
+		}
+		// Touch sensor triggered
+		else if (SensorValue[S3] == 1)
+		{
+			hasTouchPressed = true;
+		}
+		// side length elapsed
+		else
+		{
+			motorsPower(0);
+			turn(90 * isPathClockwise);
+			distanceToGo = ENCODER_50_CM;
+		}
+	} while (!hasTouchPressed)
+
+	motorsPower(0);
+}
