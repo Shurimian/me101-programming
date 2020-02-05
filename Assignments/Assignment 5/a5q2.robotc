@@ -4,7 +4,7 @@
 
 task main()
 {
-	SensorType[S1] = sensorEV3_Ultrasonic;
+	SensorType[S4] = sensorEV3_Ultrasonic;
 	wait1Msec(50);
 
 	while(!getButtonPress(buttonAny))
@@ -12,9 +12,9 @@ task main()
 
 	while(getButtonPress(buttonAny))
 	{}
-	const int ENC_LIMIT = 360 * 5
+	const int ENC_LIMIT = 360 * 3;
 
-	int initDistance = SensorValue[S1];
+	int initDistance = SensorValue[S4];
 	nMotorEncoder[motorA] = 0;
 	time1[T1] = 0;
 
@@ -25,19 +25,19 @@ task main()
 
 	motor[motorA] = motor[motorC] = 0;
 	int timeElapsed = time1[T1];
-	int finalDistance = SensorValue[S1];
+	int finalDistance = SensorValue[S4];
 
 	int distanceTravelled = initDistance - finalDistance;
 	float wheelDiameter = distanceTravelled * 360.0 / (PI * ENC_LIMIT);
 	float speed = distanceTravelled / 100.0 / (timeElapsed / 1000.0);
 
 	displayString(0, "Wheel Diameter: %f cm", wheelDiameter);
-	displayString(1, "Speed at 30% Power: %f m/s", speed);
+	displayString(1, "Speed: %f m/s", speed);
 
 	while (!getButtonPress(buttonAny))
 	{}
 
-	while (getButtinPress(buttonAny))
+	while (getButtonPress(buttonAny))
 	{}
 
 	eraseDisplay();
