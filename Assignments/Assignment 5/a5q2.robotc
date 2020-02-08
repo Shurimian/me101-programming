@@ -4,6 +4,8 @@
 
 task main()
 {
+	const int ENC_LIMIT = 360 * 3;
+	
 	SensorType[S4] = sensorEV3_Ultrasonic;
 	wait1Msec(50);
 
@@ -12,7 +14,6 @@ task main()
 
 	while(getButtonPress(buttonAny))
 	{}
-	const int ENC_LIMIT = 360 * 3;
 
 	int initDistance = SensorValue[S4];
 	nMotorEncoder[motorA] = 0;
