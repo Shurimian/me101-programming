@@ -1,0 +1,17 @@
+IraNeedles_Erb       ***
+HomerWatson_Block    **************************
+Erb_Platinum         *****
+Erb_Costco           ***************************************
+CanAmera_Townline    ******************
+IraNeedles_Thorndale ****************
+Westmount_Laurelwood ****
+HomerWatson_Ottawa   *****************************************
+Bleams_Manitou       **********
+Bridge_Lancaster     ***********
+Fairway_Zeller       **
+Ottawa_Alpine        *
+Pinebush_Thompson    *****
+Franklin_Dundas      ***************
+
+Total incidents: 1895
+Worst roundabout was HomerWatson_Ottawa with 401 incidents.
