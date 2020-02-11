@@ -1,0 +1,31 @@
+IraNeedles_Erb        28
+HomerWatson_Block    251
+Erb_Platinum          48
+Erb_Costco           381
+CanAmera_Townline    176
+IraNeedles_Thorndale 159
+Westmount_Laurelwood  35
+HomerWatson_Ottawa   401
+Bleams_Manitou        95
+Bridge_Lancaster     101
+Fairway_Zeller        17
+Ottawa_Alpine          3
+Pinebush_Thompson     50
+Franklin_Dundas      150
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
