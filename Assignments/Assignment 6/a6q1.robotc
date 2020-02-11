@@ -1,0 +1,88 @@
+// Chamath Wijesekera - ME 101
+// Assignment 6 Question 1
+
+
+// Motor Power Function
+void motorPower (int power)
+{
+	motor[motorA] = motor[motorB] = power;
+}
+
+// Drive to Distance and Turn to Angle prototypes because sensors not initialized yet (not necessary?)
+void gotoDist(int distance);
+void gotoAngle (int angle);
+
+
+
+task main()
+{
+	// Init Sensors
+	SensorType[S1] = sensorsEV3_Gyro;
+	SensorType[S2] = sensorsEV3_Ultrasonic;
+	wait1Msec(50);
+	sensorMode[S1] = EV3Gyro_Angle;
+
+	// Check button press
+	while (!getButtonPress(buttonEnter))
+	{}
+
+	while (getButtonPress(buttonEnter))
+	{}
+
+	// Get initial distance and angle to work with
+	int initialDistance = SensorValue[S2];
+	int initialAngle = SensorValue[S1];
+
+	// Do remain at angle and distance until down button pressed
+	while(!getButtonPress(buttonDown))
+	{
+		gotoAngle(initialAngle);
+		gotoDist(initialDistance);
+	}
+
+	// Down button release then end program
+	while(getButtonPress(buttonDown)
+	{}
+}
+
+void gotoDist (int distance)
+{
+	if (sensorValue[S2] > distance)
+	{
+		motorPower(-30);
+
+		while (sensorValue(S2) < distance)
+		{}
+	}
+	else if (sensorValue[S2] > distance)
+	{
+		motorPower(30);
+
+		while (sensorValue[S2] > distance)
+		{}
+	}
+
+	motorPower(0);
+}
+
+void gotoAngle (int angle)
+{
+		if (sensorValue[S1] > angle)
+	{
+		motor[motorA] = -30;
+		motor[motorB] = 30;
+
+		while (sensorValue[S1] > angle)
+		{}
+	}
+	else if (sensorValue[S1] < angle)
+	{
+		motor[motorA] = 30;
+		motor[motorB] = -30;
+
+		while (sensorValue[S1] < angle)
+		{}
+	}
+
+	motorPower(0);
+}
