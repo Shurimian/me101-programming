@@ -52,9 +52,9 @@ int main()
         int sightingInterval = 0;
         int currentSighting = timeInMinutes(time24);
 
-        fout << fixed << setprecision(2)
-             << setw(7) << coordsToDist(coordX, coordY) << " " << setw(7) 
-             << coordsToAngle(coordX, coordY) << endl;
+        fout << fixed << setprecision(2) 
+             << setw(7) << coordsToDist(coordX, coordY) << " " 
+             << setw(7) << coordsToAngle(coordX, coordY) << endl;
 
         sightingInterval = currentSighting - prevSighting;
         
