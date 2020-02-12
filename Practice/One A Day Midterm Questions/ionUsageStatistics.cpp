@@ -25,18 +25,15 @@ int main()
     int totalCount = 0;
     int prevTrain = 0;
 
-    fin >> isNorthbound;
-
     while (fin >> inputValue)
     {         
-        if (inputValue <=  prevTrain)
+        isNorthbound = inputValue;
+        int waitTime = 0;
+        int prevTrain = 0;
+        for (int count = 0; count < 15; count++)
         {
-            isNorthbound = inputValue;
-            prevTrain = 0;
-        }
-        else
-        {
-            int waitTime = inputValue - prevTrain;
+            fin >> inputValue;
+            waitTime = inputValue - prevTrain;
             if (isNorthbound)
             {
                 if (waitTime > longestNorthboundWait)
@@ -44,11 +41,13 @@ int main()
                     longestNorthboundWait = waitTime;
                 }
             }
-            
+        
             totalSum += waitTime;
-            prevTrain = inputValue; 
+            prevTrain = inputValue;
             totalCount++;
+        
         }
+        
     }
 
     cout << "Longest time between Northbound trains: " << longestNorthboundWait << " minutes" << endl
