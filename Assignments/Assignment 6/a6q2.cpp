@@ -1,4 +1,4 @@
-// Chamath Wijesekera - ME 101
+// Chamath Wijesekera and Nathan Shen - ME 101
 // Assignment 6 Question 2
 
 #define _USE_MATH_DEFINES
@@ -14,7 +14,7 @@ using namespace std;
 int timeInMinutes (int timeIn24h)
 {
     int minutes = timeIn24h % 100;
-    int hours = timeIn24h - minutes;
+    int hours = timeIn24h / 100;
     return hours * 60 + minutes;
 }
 
@@ -39,7 +39,7 @@ int main()
         return EXIT_FAILURE;
     }
 
-    fout << "   dist   angle\n";
+    fout << "   time    dist   angle\n";
 
     int time24 = 0;
     double coordX = 0;
@@ -53,6 +53,7 @@ int main()
         int currentSighting = timeInMinutes(time24);
 
         fout << fixed << setprecision(2) 
+             << setw(7) << currentSighting << " "
              << setw(7) << coordsToDist(coordX, coordY) << " " 
              << setw(7) << coordsToAngle(coordX, coordY) << endl;
 
