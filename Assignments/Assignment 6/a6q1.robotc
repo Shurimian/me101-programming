@@ -47,7 +47,7 @@ task main()
 
 void gotoDist (int distance)
 {
-	if (SensorValue[S2] > distance)
+	if (SensorValue[S2] < distance)
 	{
 		motorPower(-30);
 
@@ -69,16 +69,16 @@ void gotoAngle (int angle)
 {
 	if (SensorValue[S1] > angle)
 	{
-		motor[motorA] = -30;
-		motor[motorB] = 30;
+		motor[motorA] = -10;
+		motor[motorB] = 10;
 
 		while (SensorValue[S1] > angle)
 		{}
 	}
 	else if (SensorValue[S1] < angle)
 	{
-		motor[motorA] = 30;
-		motor[motorB] = -30;
+		motor[motorA] = 5;
+		motor[motorB] = -5;
 
 		while (SensorValue[S1] < angle)
 		{}
