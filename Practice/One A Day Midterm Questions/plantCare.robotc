@@ -1,0 +1,53 @@
+// Chamath Wijesekera - ME 101
+// Plant Care
+
+void configureAllSensors();
+
+void motorsPower(power)
+{
+    motor[motorA] = motor[motorD] = power;
+}
+
+void turn(angle)
+{
+    resetGyro(S2);
+    motor[motorA] = -30;
+    motor[motorD] = 30;
+    while(sensorValue[S2] < angle)
+    {}
+    motorPower(0);
+}
+
+
+void findSunlight()
+{
+    nMotorEncoder = 0;
+    motorsPower(30);
+    while(sensorValue[S3] < 150 && sensorValue[S1] == 0)
+    {}
+    if(sensorValue[S1] == 1)
+    {
+        int distanceToGo = nMotorEncoder[motorA]
+        turn(180);
+        nMotorEncoder = 0;
+        motorsPower(30);
+        while(sensorValue[S1] == 0)
+        {}
+    }
+    motorsPower(0);
+    turnAround();
+}
+
+task main()
+{
+    findSunlight();
+    while(sensorValue[S3] > 50)
+    {
+        wait1MSec(1000*15*60);
+        nMotorEncoder[motorB] = 0
+        motor[motorB] = 5;
+        while(nMotorEncoder[motorB] < 10)
+        {}
+        motor[motorB] = 0;
+    }
+}
