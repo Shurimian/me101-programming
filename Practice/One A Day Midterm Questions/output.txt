@@ -1,0 +1,4 @@
+Name                Perim   Space Cost   Artist Total
+Consell_Ryan_Adam   3.00    372.75       372.75    
+Snyder_Peter_Etril  12.50   1996.88      1996.88   
+Snyder_Peter_Etril  24.00   3940.50      5937.38   

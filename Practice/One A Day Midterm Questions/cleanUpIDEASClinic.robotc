@@ -1,0 +1,72 @@
+// Chamath Wijesekera - ME 101
+// Clean up the IDEAs Clinic space
+
+
+/*
+Sensors:
+S1 - Gyro
+S2 - Touch
+S3 - Color
+*/
+
+void configureAllSensors();
+
+int motorsPower(power)
+{
+    motor[motorA] = motor[motorD] = power;
+}
+
+int turn(angle)
+{
+    resetGyro(S1);
+    motor[motorA] = -30;
+    motor[motorD] = 30;
+    while (sensorValue[S1] < angle)
+    {}
+    motorsPower(0);
+}
+
+void cleanAisle();
+
+
+
+task main()
+{
+    int aislesSwept = 0;
+    while(sensorValue[S3] != int(colorBlack))
+    {
+        motorsPower(30);
+        while(sensorValue[S3] != int(colorRed))
+        {}
+        cleanAisle();
+    }
+    displayString(0, "aisles swept: %d", aislesSwept);
+}
+
+
+
+void cleanAisle();
+{
+    turn(270);
+    motorsPower(30);
+    while(sensorValue[S2] == 0)
+    {}
+
+    nMotorEncoder[motorB] = 0
+    motor[motorB] = 100;
+    while(nMotorEncoder[motorB] < 100)
+    {}
+    
+    motor[motorB = -100;
+    while(nMotorEncoder[motorB] > 0)
+    {}
+
+    motorsPower(-30);
+    while(sensorValue[S3] != int(colorRed))
+    {}
+
+    motorsPower(0);
+    turn(90);
+
+    aislesSwept++;
+}
