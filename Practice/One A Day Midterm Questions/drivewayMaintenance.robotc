@@ -1,0 +1,59 @@
+// Chamath Wijesekera - ME 101
+// Driveway Maintenance
+
+/* Sensors
+S3 - Color
+MotorB - Torch
+*/
+
+const double WHEEL_RADIUS = 2.75;
+
+void turn90CW(bool clockwisedir);
+
+void motorsPower(int power)
+{
+    motor[motorA] = motor[motorD] = power;
+}
+
+void makePass(bool clockwise)
+{
+    motorsPower(30)
+    while(SensorValue[S3] != int(colorRed))
+    {
+        while(SensorValue[S3] != int(colorGreen))
+        {}
+
+        motor[motorB] = 100;
+        while(SensorValue[S3] == (int)colorGreen)
+        {}
+
+        motor[motorB] = 0;
+    }
+    
+    motorsPower(0);
+    turn90CW(clockwise);
+    nMotorEncoder[motorA] = 0;
+    motorsPower(30);
+
+    while(nMotorEncoder[motorA] < 25 * 360 / (2 * WHEEL_RADIUS * PI))
+    {}
+
+    motorsPower(0);
+    turn90CW(clockwise);
+
+    clockwise = (clockwise + 1) % 2;
+    passes++;
+}
+
+
+
+task main()
+{
+    int clockwise = 1;
+    int passes = 0;
+
+    for(int cycles = 0; cycles < 20; cycles++)
+    {
+        makePass();
+    }
+}

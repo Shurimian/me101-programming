@@ -1,0 +1,3 @@
+FI630   Reykjavik           8.25  
+WS663   Calgary             4.15  
+The longest flight was FI630 at 8.25 hours

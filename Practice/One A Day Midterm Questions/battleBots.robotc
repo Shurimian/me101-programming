@@ -1,0 +1,43 @@
+// Chamath Wijesekera - ME 101
+// Battle Bots
+
+
+/* 
+Sensors
+S1 - Touch Left
+S2 - Touch Right
+*/
+
+
+void motorsPower(int power)
+{
+    motor[motorA] = motor[motorC] = power;
+}
+
+task main()
+{
+    int leftTriggered = 0;
+    int rightTriggered = 0;
+    
+    while(!getButtonPress(buttonAny))
+    {}
+
+    while(getButtonPress(buttonAny))
+    {}
+
+    for (int hits = 0; hits < 6; hits++)
+    {
+        motor[motorA] = 75 + 25 * leftTriggered;
+        motor[motorC] = 75 + 25 * rightTriggered;
+
+        while (sensorValue[S1] == 0 && sensorValue[S2] == 0)
+        {}
+
+        leftTriggered = sensorValue[S1];
+        rightTriggered = sensorValue[S2];
+
+        motorsPower(-30);
+        wait1MSec(2500);
+        motorsPower(0);
+    }
+}

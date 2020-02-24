@@ -11,12 +11,12 @@ S3 - Color
 
 void configureAllSensors();
 
-int motorsPower(power)
+motorsPower(int power)
 {
     motor[motorA] = motor[motorD] = power;
 }
 
-int turn(angle)
+turn(int angle)
 {
     resetGyro(S1);
     motor[motorA] = -30;

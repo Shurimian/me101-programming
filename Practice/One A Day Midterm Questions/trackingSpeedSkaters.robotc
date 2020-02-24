@@ -1,0 +1,46 @@
+// Chamath Wijesekera - ME 101
+// Tracking Speed Skaters
+
+/*
+Sensors
+S1 - Touch
+S3 - Ultrasonic
+*/
+
+
+void motorsPower(power)
+{
+    motor[motorA] = motor[motorD] = power;
+}
+
+void reset()
+{
+    motorsPower(-25);
+    wait1MSec(30000);
+    motorsPower(0);
+}
+
+task main()
+{
+    sensorType[S1] = sensorEV3_Touch
+    sensorType[S3] = sensorEV3_Ultrasonic
+
+    for (int laps = 0; laps < 4; laps++)
+    {
+        while (sensorValue[S3] == 255)
+        {}
+    }
+
+    motorsPower(100);
+    while(sensorValue[S1] == 0)
+    {}
+
+    motorsPower(0);
+    displayString(0, "Press to Reset");  
+    while(!getButtonPress(buttonAny))
+    {}
+    while(getButtonPress(buttonAny))
+    {}
+
+    reset();
+}
