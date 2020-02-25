@@ -1,0 +1,40 @@
+// Chamath Wijesekera - ME 101
+// Average Speed
+
+
+void motorsPower(int power)
+{
+    motor[motorA] = motor[motorD] = power;
+}
+
+
+task main()
+{
+    sensorType[S1] = sensorEV3_Ultrasonic;
+    sensorType[S2] = sensorEV3_Color;
+    sensorMode[S2] = modeEV3Color_Color;
+    
+    while(!getButtonPress(buttonAny))
+    {}
+    while(getButtonPress(buttonAny))
+    {}
+
+    time1[T1] = 0
+    int initDistance = sensorValue[S1];
+    motorsPower(70);
+    while (sensorValue[S1] != int(colorRed))
+    {}
+
+    motorsPower(0);
+    int travelTime = time1[T1];
+    int distTravelled = initDistance - sensorValue[S1];
+
+    float speed = 0;
+
+    if (distTravelled != 0)
+    {
+        speed = distTravelled / (travelTime / 1000.0)
+    }
+
+    displayString(0, Speed: %f cm/s, speed);
+}

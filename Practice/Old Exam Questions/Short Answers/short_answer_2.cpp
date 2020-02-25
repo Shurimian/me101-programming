@@ -19,5 +19,6 @@ int main()
     int down = up++;
     down *= -1;
     cout << --down << " " << up << endl;
-    // Guess - down = -6, up = 6 
+    // Guess - down = -6, up = 6
+     
 }

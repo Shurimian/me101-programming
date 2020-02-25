@@ -1,0 +1,26 @@
+// Chamath Wijesekera - ME 101
+// How Big is That Circle
+
+
+void motorsPower(int power)
+{
+    motor[motorA] = motor[motorD] = power;
+}
+
+task main()
+{
+    const int 30_SPEED_CM_S = 20;
+    sensorType[S1] = sensorEV3_Color;
+    sensorMode[S1] = modeEV3Color_Color;
+    
+    time1[T1] = 0;
+    motorsPower(35);
+
+    while(sensorValue[S1] == (int)colorWhite)'
+    {}
+
+    int travelTime = time1[T1];
+    float radius = (travelTime * 30_SPEED_CM_S) / 2;
+    float area = PI * radius * radius;
+    displayString(0, Area of Circle: %f cm^2, area);
+}

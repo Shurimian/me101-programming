@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     cout << 80 / 10 % 10 / 3 + 1.5 * 4 / 8 << endl;
-    // Guess - 2.75
+    // 2.75
 
     cout << int(14 > 8 > -1) << endl;
     // Guess - 1
