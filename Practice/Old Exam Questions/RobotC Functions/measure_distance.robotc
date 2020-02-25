@@ -1,0 +1,28 @@
+// Chamath Wijesekera - ME 101
+// Measure Distance
+
+int getDistance()
+{
+    while(sensorValue[S1] != 0)
+    {}
+
+    return sensorValue[S3];
+}
+
+task main()
+{
+    sensorType[S1] = sensorEV3_Gyro;
+    wait1MSec(50);
+    sensorMode[S1] = modeEV3Gyro_Rate;
+    sensorType[S3] = sensorEV3_Ultrasonic;
+
+    while(!getButtonPress(buttonAny))
+    {}
+
+    while(getButtonPress(buttonAny))
+    {}
+
+    distance = getDistance();
+
+    displayString(0, Distance: %d cm, distance);
+}

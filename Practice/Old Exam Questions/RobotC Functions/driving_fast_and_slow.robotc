@@ -1,0 +1,45 @@
+// Chamath Wijesekera - ME 101
+// Driving Fast and Slow
+
+
+float getSpeed(motorPower)
+{
+    motor[motorA] = motor[motorD] = abs(motorPower);
+    timer1[T1] = 0;
+    int initDist = sensorValue[S2];
+    
+    while(sensorValue[S1] == 0)
+    {}
+
+    int travelTime = timer1[T1];
+    int travelDist = initDist - sensorValue[S2];
+    return travelDist / (travelTime * 1000);
+
+}
+
+
+task main()
+{
+    sensorType[S1] = sensorEV3_Touch
+    sensorType[S2] = sensorEV3_Ultrasonic
+
+    int chosenPower = 0;
+
+    while(!getButtonPress(buttonUp) && !getButtonPress(buttonDown))
+    {}
+
+    if(getButtonPress(buttonUp))
+    {
+        chosenPower = 100;
+    }
+    else
+    {
+        chosenPower = 25;
+    }
+
+    while(getButtonPress(buttonUp) || getButtonPress(buttonDown)))
+    {}
+
+    speed = getSpeed(chosenPower);
+    displayString(0, Speed: %f cm/s, speed);
+}
