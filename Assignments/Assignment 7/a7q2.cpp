@@ -25,10 +25,9 @@ double calcYoungsMod(int measurementCount, double strains[], double stresses[])
     return (sumStress / fivePercentOfSamples) / (sumStrain / fivePercentOfSamples);
 }
 
-/*
 double calcYieldStrength(double youngsMod, double strains[], double stresses[], int pointTwoIndex)
 {
-    const double YIELD_STRENGTH_TOLERANCE = 0.1;
+    const double YIELD_STRENGTH_TOLERANCE = 1;
     double interceptDiff = 0;
     double curveStress = 0;
     double modulusStress = 0;
@@ -36,38 +35,44 @@ double calcYieldStrength(double youngsMod, double strains[], double stresses[], 
     
     do
     {
-        curveStress = strains[index];
-        modulusStress = youngsMod * (stresses[index] - 0.002);
+        curveStress = stresses[index];
+        modulusStress = youngsMod * (strains[index] - 0.002);
         
         interceptDiff = abs(curveStress - modulusStress);
         index++;
 
     } while (interceptDiff > YIELD_STRENGTH_TOLERANCE);
 
-    return strains[index];
-     
+    return stresses[index];
 }
-*/
+
 
 int main()
 {
     const int MAX_FILE_SAMPLES = 12000;
     
-    string inputFileName = "";
+    string inputFileName = " ";
     cout << "Enter name of input file (ex. Sample1.txt): ";
     cin >> inputFileName;
 
     ifstream fin(inputFileName);
 
+    if(!fin)
+    {
+        cout << "Error: File not found.";
+        return EXIT_FAILURE;
+    }
+
     double strain[MAX_FILE_SAMPLES] = {0};
     double stressMPa[MAX_FILE_SAMPLES] = {0};
-    int index = 0;
     double ultimateTensileStr = -1;
     double pointTwoStrainIndex = 0;
 
     string ignore = "";
     fin >> ignore >> ignore;
 
+    int index = 0;
+    
     while (fin >> strain[index] >> stressMPa[index])
     {   
         if (stressMPa[index] > ultimateTensileStr)
@@ -75,12 +80,13 @@ int main()
             ultimateTensileStr = stressMPa[index];
         }
 
-        const double POINT_TWO_TOLERANCE = 0.0005;
+        const double POINT_TWO_TOLERANCE = 0.0001;
 
         if (abs(strain[index] - 0.002) < POINT_TWO_TOLERANCE)
         {
             pointTwoStrainIndex = index;
         }
+        
         index++;
     }
 
