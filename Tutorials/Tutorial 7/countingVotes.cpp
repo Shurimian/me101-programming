@@ -18,7 +18,7 @@ int main()
     int highestCandidate = 0;
     while (fin >> vote)
     {
-        if(vote <= 6)
+        if(vote <= 6 && vote > 0)
         {
             candidate[vote - 1]++;
         }
