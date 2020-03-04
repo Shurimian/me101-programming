@@ -28,10 +28,11 @@ double calcYoungsMod(int measurementCount, double strains[], double stresses[])
 double calcYieldStrength(double youngsMod, double strains[], double stresses[], int pointTwoIndex)
 {
     const double YIELD_STRENGTH_TOLERANCE = 1;
+    
     double interceptDiff = 0;
     double curveStress = 0;
     double modulusStress = 0;
-    int index =  pointTwoIndex;
+    int index = pointTwoIndex;
     
     do
     {
