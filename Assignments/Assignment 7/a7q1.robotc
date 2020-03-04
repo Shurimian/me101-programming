@@ -9,25 +9,28 @@ task main()
     while(getButtonPress(buttonAny))
     {}
 
-    ClearTimer(T1);
+    clearTimer(T1);
+    
+    int randomTime = random(4000);
 
-    while(time1[T1] < random(4000))
+    while(time1[T1] < randomTime)
     {}
 
-    displayBigText(0, "PRESS DOWN NOW!");
+    displayBigTextLine(0, "PRESS DOWN NOW!");
 
-    ClearTimer(T1);
+    clearTimer(T1);
 
     while(!getButtonPress(buttonDown))
     {}
 
     int reactionTime = time1[T1];
+    eraseDisplay();
     
     while(getButtonPress(buttonDown))
     {}
 
-    displayText(0, "Reaction Time: %d milliseconds", reactionTime);
-    displayText(3, "Press ENTER to Quit");
+    displayString(0, "Reaction Time: %.2f ms", reactionTime);
+    displayString(3, "Press ENTER to Quit");
 
     while(!getButtonPress(buttonEnter))
     {}
