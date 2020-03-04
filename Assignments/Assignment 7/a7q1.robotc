@@ -1,0 +1,37 @@
+// Chamath Wijesekera and Bara Husseini - ME 101
+// Assignment 7 Question 1
+
+
+task main()
+{
+    while(!getButtonPress(buttonAny))
+    {}
+    while(getButtonPress(buttonAny))
+    {}
+
+    ClearTimer(T1);
+
+    while(time1[T1] < random(4000))
+    {}
+
+    displayBigText(0, "PRESS DOWN NOW!");
+
+    ClearTimer(T1);
+
+    while(!getButtonPress(buttonDown))
+    {}
+
+    int reactionTime = time1[T1];
+    
+    while(getButtonPress(buttonDown))
+    {}
+
+    displayText(0, "Reaction Time: %d milliseconds", reactionTime);
+    displayText(3, "Press ENTER to Quit");
+
+    while(!getButtonPress(buttonEnter))
+    {}
+    while(getButtonPress(buttonEnter))
+    {}
+
+}
