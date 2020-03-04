@@ -10,7 +10,7 @@ task main()
     {}
 
     clearTimer(T1);
-    
+
     int randomTime = random(4000);
 
     while(time1[T1] < randomTime)
@@ -25,11 +25,11 @@ task main()
 
     int reactionTime = time1[T1];
     eraseDisplay();
-    
+
     while(getButtonPress(buttonDown))
     {}
 
-    displayString(0, "Reaction Time: %.2f ms", reactionTime);
+    displayString(0, "Reaction Time: %d ms", reactionTime);
     displayString(3, "Press ENTER to Quit");
 
     while(!getButtonPress(buttonEnter))
