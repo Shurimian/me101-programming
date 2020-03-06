@@ -82,7 +82,7 @@ int main()
     double youngsMod = calcYoungsMod(index, strain, stressMPa);
     double yieldStrength = calcYieldStrength(youngsMod, strain, stressMPa);
 
-    cout << fixed << setprecision(2)
+    cout << fixed << setprecision(3)
          << "The Ultimate Tensile Strength is: " << ultimateTensileStr << " MPa\n"
          << "The Young's Modulus is: " << youngsMod << " MPa\n"
          << "The Yield Strength is: " << yieldStrength << " MPa\n"; 

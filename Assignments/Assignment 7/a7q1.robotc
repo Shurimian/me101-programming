@@ -4,9 +4,9 @@
 
 task main()
 {
-    while(!getButtonPress(buttonAny))
+    while(!getButtonPress(buttonEnter))
     {}
-    while(getButtonPress(buttonAny))
+    while(getButtonPress(buttonEnter))
     {}
 
     clearTimer(T1);
