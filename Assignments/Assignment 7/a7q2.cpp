@@ -9,6 +9,9 @@
 
 using namespace std;
 
+const int MAX_FILE_SAMPLES = 12000;
+
+
 double calcYoungsMod(int measurementCount, double strains[], double stresses[])
 {
     int fivePercentOfSamples = measurementCount * 0.05;
@@ -45,9 +48,7 @@ double calcYieldStrength(double youngsMod, double strains[], double stresses[])
 
 
 int main()
-{
-    const int MAX_FILE_SAMPLES = 12000;
-    
+{    
     string inputFileName = " ";
     cout << "Enter name of input file (ex. Sample1.txt): ";
     cin >> inputFileName;
@@ -69,7 +70,7 @@ int main()
 
     int index = 0;
     
-    while (fin >> strain[index] >> stressMPa[index])
+    while (index < MAX_FILE_SAMPLES && fin >> strain[index] >> stressMPa[index])
     {   
         if (stressMPa[index] > ultimateTensileStr)
         {
