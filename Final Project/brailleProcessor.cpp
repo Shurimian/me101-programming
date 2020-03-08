@@ -22,44 +22,44 @@ int main()
 {
     map<char, string> braille;
     
-    braille['a'] = "100000";
-    braille['b'] = "110000";
-    braille['c'] = "100100";
-    braille['d'] = "100110";
-    braille['e'] = "100010";
-    braille['f'] = "110100";
-    braille['g'] = "110110";
-    braille['h'] = "110010";
-    braille['i'] = "010100";
-    braille['j'] = "010110";
-    braille['k'] = "101000";
-    braille['l'] = "111000";
-    braille['m'] = "101100";
-    braille['n'] = "101110";
-    braille['o'] = "101010";
-    braille['p'] = "111100";
-    braille['q'] = "111110";
-    braille['r'] = "111010";
-    braille['s'] = "011100";
-    braille['t'] = "011110";
-    braille['u'] = "101001";
-    braille['v'] = "111001";
-    braille['w'] = "010111";
-    braille['x'] = "101101";
-    braille['y'] = "101111";
-    braille['z'] = "101011";
-    braille['1'] = "100000";
-    braille['2'] = "110000";
-    braille['3'] = "100100";
-    braille['4'] = "100110";
-    braille['5'] = "100010";
-    braille['6'] = "110100";
-    braille['7'] = "110110";
-    braille['8'] = "110010";
-    braille['9'] = "010100";
-    braille['0'] = "010110";
-    braille[','] = "010000";
-    braille['.'] = "010011";
+    braille['a'] = "1 0 0 0 0 0 ";
+    braille['b'] = "1 1 0 0 0 0 ";
+    braille['c'] = "1 0 0 1 0 0 ";
+    braille['d'] = "1 0 0 1 1 0 ";
+    braille['e'] = "1 0 0 0 1 0 ";
+    braille['f'] = "1 1 0 1 0 0 ";
+    braille['g'] = "1 1 0 1 1 0 ";
+    braille['h'] = "1 1 0 0 1 0 ";
+    braille['i'] = "0 1 0 1 0 0 ";
+    braille['j'] = "0 1 0 1 1 0 ";
+    braille['k'] = "1 0 1 0 0 0 ";
+    braille['l'] = "1 1 1 0 0 0 ";
+    braille['m'] = "1 0 1 1 0 0 ";
+    braille['n'] = "1 0 1 1 1 0 ";
+    braille['o'] = "1 0 1 0 1 0 ";
+    braille['p'] = "1 1 1 1 0 0 ";
+    braille['q'] = "1 1 1 1 1 0 ";
+    braille['r'] = "1 1 1 0 1 0 ";
+    braille['s'] = "0 1 1 1 0 0 ";
+    braille['t'] = "0 1 1 1 1 0 ";
+    braille['u'] = "1 0 1 0 0 1 ";
+    braille['v'] = "1 1 1 0 0 1 ";
+    braille['w'] = "0 1 0 1 1 1 ";
+    braille['x'] = "1 0 1 1 0 1 ";
+    braille['y'] = "1 0 1 1 1 1 ";
+    braille['z'] = "1 0 1 0 1 1 ";
+    braille['1'] = "1 0 0 0 0 0 ";
+    braille['2'] = "1 1 0 0 0 0 ";
+    braille['3'] = "1 0 0 1 0 0 ";
+    braille['4'] = "1 0 0 1 1 0 ";
+    braille['5'] = "1 0 0 0 1 0 ";
+    braille['6'] = "1 1 0 1 0 0 ";
+    braille['7'] = "1 1 0 1 1 0 ";
+    braille['8'] = "1 1 0 0 1 0 ";
+    braille['9'] = "0 1 0 1 0 0 ";
+    braille['0'] = "0 1 0 1 1 0 ";
+    braille[','] = "0 1 0 0 0 0 ";
+    braille['.'] = "0 1 0 0 1 1 ";
     
     string inputFileName = " ";
     
@@ -116,7 +116,7 @@ int main()
         for (int wordChar = 0; wordChar < wordLength; wordChar++)
         {
             char processingChar = tolower(currentWord[wordChar]);
-            fout << processingChar; 
+            fout << processingChar << " "; 
             fout << braille[processingChar] << endl;
             currentChar++;
         }
