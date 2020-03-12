@@ -6,21 +6,22 @@ ARRAY IMPLEMENTATIONN
 
 Parking Current
     Composed of two 1D arrays consisting of 50 items each to represent the parking spaces. Each array stores data as follows:
-        Array 1 - Occupation
-          1 = staff
-          0 = student
-          -1 = empty 
+        Array 1 - Status
+          2 = staff
+          1 = student
+          0 = empty - Note that this is because arrays can initialize easily only with all zeroes 
         Array 2 - Name
 
 Parking Add / Parking Remove
     Composed of a 2D array consisting of two rows. Each row stores data as follows:
-        Array 1 - Occupation
-          1 = staff
-          0 = student
+        Array 1 - Status
+          2 = staff
+          1 = student
         Array 2 - Name
 
 Empty parking spots will be represented as "-1" in the current parking occupation array 
 */
+
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -31,116 +32,170 @@ using namespace std;
 const int PARKING_SPACES = 50;
 const int MAX_IN_OUT = 25;
 
-int main()
-{
-  // Current Parking
-  int currentTitle[PARKING_SPACES] = {-1};
-  string currentName[PARKING_SPACES] = {""};
-
-  // Add/Remove Parking
-  int addRemoveTitle[MAX_IN_OUT] = {0};
-  string addRemoveName[MAX_IN_OUT] = {""};
-}
-
-
 // Question b)
-void populateCurrentParking(ifstream &fin, int occupations[], string names[])
+void populateCurrentParking(ifstream &fin, int statuses[], string names[])
 {
-  int index = 0;
-  int occupation = 0;
-  string name = "";
+    int index = 0;
+    int status = 0;
+    string name = "";
 
-  while (fin >> occupation >> name >> index)
-  {
-    occupations[index - 1] = occupation;
-    names[index - 1] = name;
-  }
-  
+    while (fin >> status >> name >> index)
+    {
+        statuses[index - 1] = status + 1;
+        names[index - 1] = name;
+    }
 }
 
 //question (c)
-void populatearray(ifstream & fin, int occupation[25], string name[25])
+void populateAddRemove(ifstream &fin, int statuses[], string names[])
 {
-  int occupation = 0;
-  int index = 0;
-  string name = 0;
-  while (fin >> occupation >> name)
-  {
-  ocupation[index] = occupation;
-  name[index] = name;
-  index++;
-  }
+    int status = 0;
+    int index = 0;
+    string name = "";
+    while (fin >> status >> name)
+    {
+        statuses[index] = status + 1;
+        names[index] = name;
+        index++;
+    }
 }
 
 //question (d)
-void deleteparkingspace(string onepersonname, int occupation[25], string name[25])
+void deleteParking(string name, int statuses[], string names[])
 {
-  int index = 0;
-  while(index < 25)
-  {
-  if (onepersonname == name[index])
-  {
-    name[index] = "";
-  }
-  index++;
-  }
+    for (int index = 0; index < PARKING_SPACES; index++)
+    {
+        if (name == names[index])
+        {
+            names[index] = "";
+            statuses[index] = 0;
+        }
+    }
 }
 
 // Question e)
-int lowestValidSpace(int titleArray[], int title)
+int lowestValidSpace(int statuses[], int status)
 {
-  int validSpace = -1;
-
-  for (int index = 0; index < PARKING_SPACES; index++)
-  {
-    if(titleArray[index] = -1)
+    int validSpace = -1;  
+    for (int index = 0; index < PARKING_SPACES; index++)
     {
-      if(title = 1)
-      {
-        validSpace = index;
-      }
-      else if (title = 0 && index > 25)
-      {
-        validSpace = index;
-      }
+        if (statuses[index] == 0)
+        {
+            if (status == 2)
+            {
+                validSpace = index;
+                return validSpace;
+            }
+            else if (status == 1 && index > 25)
+            {
+                validSpace = index;
+                return validSpace;
+            }
+        }
     }
-  }
-  return validSpace;
+    return validSpace;
 }
 
 //question (f)
-void assignapproproiateparking(int occupation[25], string name[25], string onepersonname, int status)
+void assignParking(int statuses[], string names[], string name, int status)
 {
-     int assignparkingspace = lowestValidSpace(int occupation, string name, int status);
-     occupation[assignedparkingspace] = status;
-     name[assignedparkingspace] = name;
+    int assignedSpace = lowestValidSpace(statuses, status);
+    
+    if (assignedSpace != -1)
+    {
+        statuses[assignedSpace] = status;
+        names[assignedSpace] = name;
+    }
 }
 
 // Question g)
-
-void reassignSpots(int titleArray[], string nameArray[])
+void reassignSpots(int statuses[], string names[])
 {
-  int spaceReassignedTo = 0;
-  for (int index = 25; index < 49; index++)
-  {
-    if(titleArray[index] = 1)
+    int spaceReassignedTo = 0;
+    for (int index = 25; index < 49; index++)
     {
-      spaceReassignedTo = lowestValidSpace(titleArray, 1);
+        if (statuses[index] == 2)
+        {
+            spaceReassignedTo = lowestValidSpace(statuses, 2);
+            if (spaceReassignedTo < 25)
+            {   
+                string reassignName = names[index];
+                deleteParking(names[index], statuses, names);
+                assignParking(statuses, names, reassignName, 2);
+            }
+        }
     }
-  }
 }
-
-
-
 
 // Question h)
-void outputData(ofstream &fout, int titleArray[], string nameArray[])
+void outputData(ofstream &fout, int statuses[], string names[])
 {
-  for (int index = 0; index < PARKING_SPACES; index++)
-  {
-    if(titleArray[index] != -1)
+    for (int index = 0; index < PARKING_SPACES; index++)
     {
-      cout << titleArray[index] << nameArray[index] << index << endl;
-    }  
-  }
+        if (statuses[index] != 0)
+        {
+            fout << left
+                 << setw(3) << statuses[index] - 1
+                 << setw(20)<< names[index] 
+                 << index + 1 << endl;
+        }
+    }
 }
+
+// Question i)
+int main()
+{
+    ifstream finCurrent("parking_current.txt");
+    ifstream finAdd("parking_add.txt");
+    ifstream finRemove("parking_remove.txt");
+
+    if (!finCurrent || !finAdd || !finRemove)
+    {
+        cout << "A file was not found.";
+        return EXIT_FAILURE;
+    }
+
+    ofstream fout("parking_update.txt");
+
+    // Current Parking
+    int currentStatuses[PARKING_SPACES] = {0};
+    string currentNames[PARKING_SPACES] = {""};
+
+    // Add/Remove Parking
+    int addRemoveStatuses[MAX_IN_OUT] = {0};
+    string addRemoveNames[MAX_IN_OUT] = {""};
+
+    populateCurrentParking(finCurrent, currentStatuses, currentNames);
+    populateAddRemove(finRemove, addRemoveStatuses, addRemoveNames);
+    finRemove.close();
+
+    for (int index = 0; index < MAX_IN_OUT; index++)
+    {
+        deleteParking(addRemoveNames[index], currentStatuses, currentNames);
+    }
+
+    reassignSpots(currentStatuses, currentNames);
+
+    // Cleaning array for new input
+
+    for (int index = 0; index < MAX_IN_OUT; index++)
+    {
+        addRemoveStatuses[index] = 0;
+        addRemoveNames[index] = "";
+    }
+
+    populateAddRemove(finAdd, addRemoveStatuses, addRemoveNames);
+    finAdd.close();
+
+    for (int index = 0; index < MAX_IN_OUT; index++)
+    {
+        assignParking(currentStatuses, currentNames, addRemoveNames[index], addRemoveStatuses[index]);
+    }
+
+    outputData(fout, currentStatuses, currentNames);
+  
+    finCurrent.close();
+    fout.close();
+    return EXIT_SUCCESS;
+}
+
