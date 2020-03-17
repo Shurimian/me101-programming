@@ -1,6 +1,5 @@
 // ME101 - Final Project - Text to Braille Program
-
-
+// Converts text file into "machine code" for easier processing.
 
 
 
@@ -17,6 +16,8 @@ space - !
 #include <map>
 
 using namespace std;
+
+// Map for character to machine code mappings
 
 int main()
 {
