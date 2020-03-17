@@ -1,0 +1,177 @@
+
+Chamath Wijesekera - ME 101
+RobotC Project Assignment
+
+Question a)
+Fill in the table below to plan how you will use your sensors. You may add additional EV3 sensors that are not described in the Question
+
+Port            Sensor Type             What does it indicate/detect, and how?
+S1              Ultrasonic              Determines whether the distance to the other rail is 2m (consistent spacing). Done by checking if the sensor value is approximately 200.
+S2              Color                   Used to detect when the robot has reached a station. Done by detecting the yellow markers at the edge of stations.
+S3              Touch                   Used to detect when there is a bump on the rail. Touch sensor is triggered every time a bump protrudes enough to push it.
+S4              Ultrasonic              Used to detect whether or not the robot is still on the rail. If the value is significantly higher than an expected value (~10 because 10cm above track), it has most likely been picked up by a thief.
+
+Question b)
+Describe how you will keep track of the up to 8 issues that can occur between stations. Why did you choose this approach?
+
+To keep track of the issues between stations, I will use an array of size 8 elements that will track the distance to the station of up to eight issues,
+and an int variable that will keep track of how many errors have been found. 
+Upon reaching a station, both of these will reset and allow for further collection of data. 
+I chose this solution because it is known that there are a maximum of eight issues between stations, nullifying the issues of non-dynamic arrays, and because it is an efficient solution to store 
+up to eight values of the same type. Using a single variable for each issue would be inefficient and messy.
+
+Question c)
+State at least one other assumption. Your assumption should be realistic and necessary for operation of the robot system.
+
+- Any potential thiefs would have no knowledge of the Ultrasonic Sensor that detects whether the robot is still on the tracks. Additionally, they will not cover the sensor when stealing it to make the robot think that it is still on the tracks and render the system useless
+- The bumps or protrusions in the track are not so large that they block the movement of the robot, and the tolerance for issues is not so small that such a size would not be able to be picked up by the touch sensor
+- The robot is weather-proof and will not break down easily in service.
+- The ultrasonic sensors have been upgraded or set up in a way that allows for centimeter accuracy (eg. a value of 200 is actually 200 cm)
+
+Question d)
+State an issue with this plan that may cause it to fail.
+
+With the default configuration motors, the robot is far too slow to do a large amount of track inspection. If inspection was required on a large portion of track, even with several robots deployed the process would take a very large amount of time.
+This is not very realistic considering that the Ion system would be a disaster if it required large amounts of downtime every so often. Additionally, robots dodging cars at railway crossings would be problematic.
+
+Question e)
+You will be required to write at least two non-trivial functions, at least one of which has parameters. Give brief descriptions of your functions and indicate your reasons for your function design. 
+
+//TODO
+
+Question f)
+Write the RobotC code for your function and the main program.
+
+
+const float WHEEL_RAD = 2.75;
+
+void alarmBells(bool);
+void configSensors();
+
+void motorPower(bool isEscape, int power)
+{
+    if (isEscape)
+    {
+        motor[motorA] = motor[motorD] = power;
+    }
+    else
+    {
+        motor[motorB] = power;
+    }
+}
+
+float encoderToDistance(int encoderValue)
+{
+    return (encoderValue * 2.0 * PI * WHEEL_RAD) / 360.0;
+}
+
+void alarmMode(bool *stopCommand)
+{
+    alarmBells(true);
+    motorPower(true, 100);
+    wait1MSec(25000);
+    motorPower(true, 0);  
+    stopCommand = true;
+}
+
+void displayIssues(float *issueArray, int *issueCount, int *totalIssues)
+{
+    displayString(20, "Issues found:");
+    
+    for int (issues = 0; issues < issueCount; issues++)
+    {
+        float issueDistance = (nMotorEncoder[motorB] - issueArray[issues]) / 100; 
+        displayString(issues + 1, "%.2f m from This Station", issueDistance);
+    }
+
+    displayString(issueCount + 1, "Press [ENTER] to continue...");
+
+    while(!getButtonPress(buttonEnter))
+    {}
+
+    while(getButtonPress(buttonEnter))
+    {}
+
+    eraseDisplay();
+    totalIssues += issueCount;
+    issueCount = 0;
+    nMotorEncoder[motorB] = 0;
+    motorPower(false, 70);
+}
+
+task main()
+{ 
+    const int MAX_STOPS = 19;
+    const int MAX_ISSUES = 8;
+
+    configSensors();
+    int stationStops = 0;
+    int errorNumber = 0;
+    int totalIssues = 0;
+    float issueArray[MAX_ISSUES] = {0}
+    bool stopCommand = false;
+    motorPower(70);
+    while (stationStops < MAX_STOPS && !stopCommand)
+    {
+        if(sensorValue[S4] > 20)
+        {
+            alarmMode(stopCommand);
+        }
+        else if(sensorValue[S2] == int(colorYellow))
+        {
+            currentStation++;
+            motorPower(false, 0);
+            displayIssues(issueArray, errorNumber, totalIssues);
+        }
+        else if(sensorValue[S1] != 200 || sensorValue[S3] == 1)
+        {
+            issueArray[errorNumber] = encoderToDistance(nMotorEncoder[motorB]);
+            errorNumber++;
+        }  
+    }
+    motorPower(false, 0);
+    
+    
+    if (stopCommand)
+    {
+        displayString(0, "Theft Prevented!");
+    }
+    else
+    {
+        displayString(0, "Total Issues: %d", totalIssues);
+    }
+    
+    displayString(1, "Press [ENTER] to end...");
+
+    while(!getButtonPress(buttonEnter))
+    {}
+
+    while(getButtonPress(buttonEnter))
+    {}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Question g)
+Briefly describe a test plan that could be used to test this robot system
+
+An effective method to test the robot would be to build a small loop of rail track and use it to test the system under closed conditions. Alternatively, a supervised test run on actual tracks could be done as that would provide a much better replication of what the robot's operation would actually be like.
+
+
+
+
+
+
+
+
+
+
